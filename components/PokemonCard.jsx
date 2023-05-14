@@ -3,11 +3,19 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import PokemonDialog from "./PokemonDialog.jsx";
 import Box from "@material-ui/core/Box";
 
 export default function PokemonCard({ pokemon }) {
   const [openDialog, setOpenDialog] = useState(false);
 
+  const handleClick = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
 
   const imageSrc =
     pokemon.sprites.front_default ||
@@ -42,10 +50,15 @@ export default function PokemonCard({ pokemon }) {
         <Typography gutterBottom variant="h5" component="div">
           <strong>{pokemon.name}</strong>
         </Typography>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={handleClick}>
           More
         </Button>
       </CardContent>
+      <PokemonDialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        pokemon={pokemon}
+      />
     </Card>
   );
 }
