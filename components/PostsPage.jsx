@@ -42,14 +42,17 @@ export default function PostsPage() {
   }
 
   //to handle first and last page
-    const handleFirstPage = () => {
-      setCurrentPage(1);
-    };
+  const handleFirstPage = () => {
+    setCurrentPage(1);
+  };
 
-    const handleLastPage = () => {
-      setCurrentPage(totalPages);
-    };
+  const handleLastPage = () => {
+    setCurrentPage(totalPages);
+  };
 
+  // Calculate start and end index of the items being shown
+  const startItemIndex = (currentPage - 1) * pageSize + 1;
+  const endItemIndex = Math.min(currentPage * pageSize, totalCount);
 
   // max page numbers to be shown
   const maxPageNumbers = 5;
@@ -89,6 +92,11 @@ export default function PostsPage() {
   return (
     <>
       <div>
+        <Typography variant="h6" align="center" gutterBottom>
+          Total Pokémon: {totalCount}
+          <br></br>
+          Showing {startItemIndex}-{endItemIndex}
+        </Typography>
         <CardContainer>
           <Grid container spacing={3}>
             {posts.map((pokemon, index) => (
@@ -99,6 +107,60 @@ export default function PostsPage() {
           </Grid>
         </CardContainer>
       </div>
-          </>
+       <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "20px 0",
+          gap: "5px"
+        }}
+      >
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleFirstPage}
+          disabled={currentPage === 1}
+        >
+          First
+        </Button>
+
+        {currentPage > 1 && (
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            Previous
+          </Button>
+        )}
+        {pageNumbers.map((pageNumber) => (
+          <Button
+            variant="contained"
+            color={currentPage === pageNumber ? "secondary" : "primary"}
+            onClick={() => setCurrentPage(pageNumber)}
+            style={{ margin: "0 5px" }} // Add space between each button
+          >
+            {pageNumber}
+          </Button>
+        ))}
+        {currentPage < totalPages && (
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            Next
+          </Button>
+        )}
+         <Button
+          variant="contained"
+          color="primary"
+          onClick={handleLastPage}
+          disabled={currentPage === totalPages}
+        >
+          Last
+        </Button>
+        </div>
+    </>
   );
 }
