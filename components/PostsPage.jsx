@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import {CardContainer} from '../styles/StyledComponents.js';
 import PokemonCard from "./PokemonCard.jsx";
+import Filter from "./Filter.jsx";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -92,6 +93,7 @@ export default function PostsPage() {
   return (
     <>
       <div>
+        <Filter />
         <Typography variant="h6" align="center" gutterBottom>
           Total Pokémon: {totalCount}
           <br></br>
@@ -107,12 +109,12 @@ export default function PostsPage() {
           </Grid>
         </CardContainer>
       </div>
-       <div
+      <div
         style={{
           display: "flex",
           justifyContent: "center",
           margin: "20px 0",
-          gap: "5px"
+          gap: "5px",
         }}
       >
         <Button
@@ -152,7 +154,7 @@ export default function PostsPage() {
             Next
           </Button>
         )}
-         <Button
+        <Button
           variant="contained"
           color="primary"
           onClick={handleLastPage}
@@ -160,7 +162,7 @@ export default function PostsPage() {
         >
           Last
         </Button>
-        </div>
+      </div>
     </>
   );
 }
