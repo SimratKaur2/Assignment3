@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import PokemonDialog from "./PokemonDialog.jsx";
 import Box from "@material-ui/core/Box";
+import Image from "next/image";
 
 export default function PokemonCard({ pokemon }) {
   const [openDialog, setOpenDialog] = useState(false);
@@ -38,13 +39,15 @@ export default function PokemonCard({ pokemon }) {
           height={200}
           sx={{ overflow: "hidden" }}
         >
-          <img
+          <Image
             src={imageSrc}
             alt={pokemon.name}
-            style={{
-              height: "auto",
-              maxWidth: "100%",
-            }}
+            // style={{
+            //   height: "auto",
+            //   maxWidth: "100%",
+            // }}
+            width={100}
+            height={100}
           />
         </Box>
         <Typography gutterBottom variant="h5" component="div">

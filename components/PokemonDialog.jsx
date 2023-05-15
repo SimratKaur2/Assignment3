@@ -1,18 +1,19 @@
 import React from "react";
 import { Dialog } from "@material-ui/core";
 import { DialogWrapper } from "../styles/StyledComponents";
+import Image from "next/image";
 
 export default function PokemonDialog({ open, onClose, pokemon }) {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogWrapper>
         <h2>{pokemon.name}</h2>
-        <img
+        <Image
           className="pokemon-image"
           src={pokemon.sprites.front_default}
           alt={pokemon.name}
-          width="100"
-          height="100"
+          width={100}
+          height={140}
         />
         <h3>Abilities:</h3>
         <ul>
