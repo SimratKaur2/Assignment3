@@ -42,10 +42,6 @@ export default function PokemonCard({ pokemon }) {
           <Image
             src={imageSrc}
             alt={pokemon.name}
-            // style={{
-            //   height: "auto",
-            //   maxWidth: "100%",
-            // }}
             width={100}
             height={100}
           />

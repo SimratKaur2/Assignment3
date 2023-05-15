@@ -15,6 +15,7 @@ export default function PostsPage() {
   const [pageSize, setPageSize] = useState(10);
   const [totalCount, setTotalCount] = useState(0);
 
+  
   //for filtering
   const [selectedType, setSelectedType] = useState(null);
 
@@ -36,7 +37,7 @@ export default function PostsPage() {
     }
 
     fetchPosts();
-  }, [currentPage]);
+  }, [currentPage, pageSize]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -135,8 +136,9 @@ export default function PostsPage() {
             Previous
           </Button>
         )}
-        {pageNumbers.map((pageNumber) => (
+        {pageNumbers.map((pageNumber, index) => (
           <Button
+            key={index}
             variant="contained"
             color={currentPage === pageNumber ? "secondary" : "primary"}
             onClick={() => setCurrentPage(pageNumber)}
