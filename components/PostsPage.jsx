@@ -1,3 +1,5 @@
+//PostsPage.jsx
+
 import { useState, useEffect } from "react";
 import {CardContainer} from '../styles/StyledComponents.js';
 import PokemonCard from "./PokemonCard.jsx";

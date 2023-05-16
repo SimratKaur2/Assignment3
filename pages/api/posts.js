@@ -1,4 +1,4 @@
-//pages/api/pokemon.js
+//pages/api/posts.js
 
 export default async function handler(req, res) {
   const response = await fetch(

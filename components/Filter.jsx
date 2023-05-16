@@ -31,30 +31,45 @@ export default function Filter() {
     filterPokemon();
   }, [selectedType]);
 
-  const handleTypeClick = (type) => {
-    setSelectedType(type);
-  };
+ const handleTypeClick = (type) => {
+   if (type === selectedType) {
+     setSelectedType(null);
+     setFilteredPokemon([]);
+   } else {
+     setSelectedType(type);
+   }
+ };
+
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        flexWrap: "wrap",
-        gap: "10px",
-        padding: "20px",
-      }}
-    >
-      {types.map((type) => (
-        <Button
-          key={type.name}
-          variant="contained"
-          color={selectedType === type ? "secondary" : "primary"}
-          onClick={() => handleTypeClick(type)}
-        >
-          {type.name}
-        </Button>
-      ))}
-    </div>
+    <>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          gap: "10px",
+          padding: "20px",
+        }}
+      >
+        {types.map((type) => (
+          <Button
+            key={type.name}
+            variant="contained"
+            color={selectedType === type ? "secondary" : "primary"}
+            onClick={() => handleTypeClick(type)}
+          >
+            {type.name}
+          </Button>
+        ))}
+      </div>
+      <ul>
+        {selectedType &&
+          filteredPokemon.map((pokemon) => (
+            <li key={pokemon}>{pokemon.name}</li>
+          ))}
+      </ul>
+    </>
   );
+  
 }
